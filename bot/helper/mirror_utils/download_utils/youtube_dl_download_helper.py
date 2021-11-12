@@ -18,9 +18,8 @@ class MyLogger:
         LOGGER.debug(msg)
         # Hack to fix changing changing extension
         video = re.search(r'.Merger..Merging formats into..(.*?).$', msg)
-        audio = re.search(r'.ExtractAudio..Destination..(.*?)$', msg)
-        if video and audio and not self.obj.is_playlist:
-            newname = video.group(1) and audio.group(1)
+        if video and not self.obj.is_playlist:
+            newname = video.group(1)
             newname = newname.split("/")
             newname = newname[-1]
             self.obj.name = newname
